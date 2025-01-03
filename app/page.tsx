@@ -39,7 +39,7 @@ const data: {
       id: "3",
       image: "/thumb-portfolio-mahalo.jpg",
       title: "MAHALO",
-      text: "ハワイをイメージとしたリラクゼーションブランドです。",
+      text: "ハワイをイメージとしたリラクゼーションブランドです。要件定義から全工程参画しております。",
       category: {
         name: "WEBサイト",
       },
