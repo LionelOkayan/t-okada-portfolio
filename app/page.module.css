@@ -221,6 +221,9 @@
   .topTitleSubProfile {
     margin-bottom: 20px;
   }
+  .topTitleArrow {
+    bottom: 50px;
+  }
 }
 
 /* Tablet and Smaller Desktop */
@@ -243,5 +246,8 @@
   .toph3WrepProfileText {
     width: 100%;
     padding-left: 0px;
+  }
+  .topTitleArrow {
+    bottom: 50px;
   }
 }
