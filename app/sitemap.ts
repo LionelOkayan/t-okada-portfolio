@@ -2,7 +2,8 @@ import { MetadataRoute } from "next";
 import { getAllPortfolioList } from "./_libs/microcms";
 import Portfolio from "./portfolio/page";
 
-const buildUrl = (path?: string) => `http://localhost:3000${path ?? ""}`;
+const buildUrl = (path?: string) =>
+  `https://t-okada-portfolio.vercel.app${path ?? ""}`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const portfolioContents = await getAllPortfolioList();
