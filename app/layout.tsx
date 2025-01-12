@@ -6,8 +6,17 @@ import Footer from "./_components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://t-okada-portfolio.vercel.app/"),
   title: {
-    template: "T.OKADA's PORTFOLIO",
-    default: "T.OKADAのポートフォリオサイトです。",
+    template: "%s | T.OKADA's PORTFOLIO",
+    default: "T.OKADA's PORTFOLIO",
+  },
+  description: "T.OKADAのポートフォリオサイトです。",
+  openGraph: {
+    title: "T.OKADA's PORTFOLIO",
+    description: "T.OKADAのポートフォリオサイトです。",
+    images: ["/ogp.jpg"],
+  },
+  alternates: {
+    canonical: "https://t-okada-portfolio.vercel.app/",
   },
 };
 

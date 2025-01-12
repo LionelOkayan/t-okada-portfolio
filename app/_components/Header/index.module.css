@@ -1,5 +1,9 @@
+.body {
+  font-size: 1.4rem;
+}
+
 .header {
-  position: absolute;
+  position: fixed;
   padding: 16px 24px 8px;
   z-index: 1000;
   display: flex;

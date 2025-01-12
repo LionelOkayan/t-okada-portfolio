@@ -1,63 +1,22 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import Image from "next/image";
+import Link from "next/link";
+import { getPortfolioList } from "@/app/_libs/microcms";
+import { TOP_PORTFOLIO_LIMIT } from "@/app/_constants";
+import PortfolioList from "@/app/_components/PortfolioList";
 
-type Portfolio = {
-  id: string;
-  image: string;
-  title: string;
-  text: string;
-  category: {
-    name: string;
-  };
-  publishedAt: string;
-};
-const data: {
-  contents: Portfolio[];
-} = {
-  contents: [
-    {
-      id: "1",
-      image: "/thumb-portfolio-omgpartners.jpg",
-      title: "OMG PARTNERS",
-      text: "OMGパートナーズグループ9社WEBサイト運用保守、自社ブランドHP制作",
-      category: {
-        name: "WEBサイト",
-      },
-      publishedAt: "2025/01/01",
-    },
-    {
-      id: "2",
-      image: "/thumb-portfolio-bc.jpg",
-      title: "BCプロジェクト",
-      text: "プロジェクトリーダーとして社内のインナーブランディング施策の立案・提案、教育、進捗管理等を行っております。",
-      category: {
-        name: "社内プロジェクト",
-      },
-      publishedAt: "2024/12/01",
-    },
-    {
-      id: "3",
-      image: "/thumb-portfolio-mahalo.jpg",
-      title: "MAHALO",
-      text: "ハワイをイメージとしたリラクゼーションブランドです。要件定義から全工程参画しております。",
-      category: {
-        name: "WEBサイト",
-      },
-      publishedAt: "2024/11/01",
-    },
-  ],
-};
-
-export default function Home() {
-  const sliceData = data.contents.slice(0, 3);
+export default async function Home() {
+  const data = await getPortfolioList({
+    limit: TOP_PORTFOLIO_LIMIT,
+  });
   return (
     <>
       <section className={styles.top}>
         <div>
           <div className={styles.bgTextWrap}>
-            <h2 className={styles.title}>成果を導くWEB制作</h2>
+            <h2 className={styles.title}>成果を生むWEB制作</h2>
             <p className={styles.bgtext}>
-              データ解析×一気通貫のWEB制作で、顧客の課題解決に貢献
+              デザイン×データ解析×生成AIで、課題解決を実現する一気通貫のWEB制作
             </p>
           </div>
           <Image
@@ -76,31 +35,10 @@ export default function Home() {
             多様なプロジェクトの実績を紹介します
           </p>
         </div>
-        <ul className={styles.portfolioUl}>
-          {sliceData.map((article) => (
-            <li key={article.id} className={styles.list}>
-              <div className={styles.link}></div>
-              <Image
-                className={styles.image}
-                src={article.image}
-                alt="No Image"
-                width={1200}
-                height={630}
-              />
-              <div className={styles.portfolioListTextWrap}>
-                <div className={styles.portfolioListTextWrapTitle}>
-                  {article.title}
-                </div>
-                <div className={styles.portfolioListTextWrapText}>
-                  {article.text}
-                </div>
-                <div className={styles.portfolioListTextWrapCate}>
-                  {article.category.name}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <PortfolioList portfolio={data.contents} />
+        <a href="/portfolio" className={styles.linkBtn}>
+          ポートフォリオをもっと見る
+        </a>
       </section>
       <section className={styles.profileBg}>
         <div className={styles.toph3Wrep}>
@@ -108,18 +46,23 @@ export default function Home() {
             <div className={styles.toph3WrepProfileText}>
               <h3 className={styles.toph3TitleProfile}>PROFILE</h3>
               <p className={styles.topTitleSubProfile}>
-                WEB制作会社を経て、全国300店舗以上を展開する事業会社でWEBディレクションから運用保守まで経験を持つクリエイター。デザインとアクセス解析を融合し、具体的な成果に繋がるサイトを構築します。
+                WEB制作会社と事業会社で培った経験を活かし、デザインと解析、生成AI活用で成果を創出するWEBクリエイター。
               </p>
             </div>
 
-            <Image
-              className={styles.imageProfile}
-              src="/img-t-okada-profile.jpg"
-              alt="T.OKADA"
-              width={613}
-              height={666}
-            />
+            <div className={styles.topTitleSubProfileImg}>
+              <Image
+                className={styles.imageProfile}
+                src="/top-profile-t-okada.jpg"
+                alt="T.OKADA"
+                width={1478}
+                height={700}
+              />
+            </div>
           </div>
+          <Link href="/profile" className={styles.linkBtn}>
+            プロフィールをもっと見る
+          </Link>
         </div>
       </section>
     </>

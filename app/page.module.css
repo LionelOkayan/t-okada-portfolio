@@ -34,6 +34,7 @@
 
 .title {
   font-size: 4.8rem;
+  text-align: center;
   font-weight: bold;
   color: #ffd700;
   text-shadow: 5px 5px 5px #000;
@@ -46,11 +47,11 @@
 }
 .portfolio {
   background: #eeeeee;
-  padding: 112px 60px;
+  padding: 60px;
 }
 .profileBg {
   background: #e0e7f3;
-  padding: 112px 60px;
+  padding: 60px;
 }
 
 .toph3Wrep {
@@ -67,9 +68,22 @@
 }
 .topTitleSub {
   text-align: center;
+  margin-bottom: 0;
 }
+.toph3WrepProfile {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
 .toph3WrepProfileText {
+  width: calc(100% - 600px);
   padding-left: 80px;
+}
+.imageProfile {
+  max-width: 600px;
 }
 
 .toph3TitleProfile {
@@ -80,7 +94,7 @@
 }
 .topTitleSubProfile {
   text-align: left;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .portfolioUl {
@@ -119,12 +133,21 @@
   background: #eeeeee;
   font-size: 1rem;
   padding: 2px 8px;
+  margin-bottom: 20px;
 }
-.toph3WrepProfile {
+.linkBtn {
+  max-width: 316px;
+  width: 100%;
+  padding: 5px;
+  margin: 80px auto 0;
+  box-sizing: border-box;
+  background-color: #84c7e9;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 74px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 /* Mobile */
@@ -135,6 +158,7 @@
     height: 100vh;
   }
   .title {
+    text-align: left;
     font-size: 2.2rem;
   }
   .bgTextWrap {
@@ -153,7 +177,7 @@
     padding: 60px 20px;
   }
   .profileBg {
-    padding: 60px 20px;
+    padding: 20px;
   }
   .portfolioUl {
     flex-direction: column;
@@ -162,7 +186,21 @@
     display: flex;
     flex-direction: column;
   }
+  .toph3TitleProfile {
+    text-align: center;
+  }
+
+  .topTitleSubProfileImg {
+    width: 100%;
+  }
+  .imageProfile {
+    width: 100%;
+  }
+  .linkBtn {
+    margin: 40px auto 0;
+  }
   .toph3WrepProfileText {
+    width: 100%;
     padding-left: 0px;
   }
   .topTitleSubProfile {
@@ -171,8 +209,24 @@
 }
 
 /* Tablet and Smaller Desktop */
-/* @media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
+@media (min-width: 701px) and (max-width: 1120px) {
+  .toph3WrepProfile {
+    display: flex;
+    flex-direction: column;
   }
-} */
+  .toph3TitleProfile {
+    text-align: center;
+  }
+
+  .topTitleSubProfileImg {
+    width: 100%;
+  }
+  .imageProfile {
+    width: 100%;
+    max-width: 100%;
+  }
+  .toph3WrepProfileText {
+    width: 100%;
+    padding-left: 0px;
+  }
+}
