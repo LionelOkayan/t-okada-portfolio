@@ -1,4 +1,7 @@
 import styles from "./page.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Image from "next/image";
 import Link from "next/link";
 import { getPortfolioList } from "@/app/_libs/microcms";
@@ -27,8 +30,15 @@ export default async function Home() {
             height={1024}
           />
         </div>
+        <a href="#contents" className={styles.topTitleArrow}>
+          <div className={styles.topTitleArrowFont}>Scroll</div>
+          <FontAwesomeIcon
+            className={styles.topTitleArrowFA}
+            icon={faAngleDown}
+          />
+        </a>
       </section>
-      <section className={styles.portfolio}>
+      <section id="contents" className={styles.portfolio}>
         <div className={styles.toph3Wrep}>
           <h3 className={styles.toph3Title}>PORTFOLIO</h3>
           <p className={styles.topTitleSub}>

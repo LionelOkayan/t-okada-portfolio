@@ -53,6 +53,21 @@
   background: #e0e7f3;
   padding: 60px;
 }
+.topTitleArrow {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.topTitleArrowFont {
+  color: #000;
+  text-shadow: 1px 1px 3px #fff;
+}
+.topTitleArrowFA {
+  color: #000;
+  text-shadow: 1px 1px 3px #fff;
+}
 
 .toph3Wrep {
   display: flex;
