@@ -30,7 +30,7 @@ export default function Article({ data }: Props) {
             <div className={styles.portfolioDlData}>
               <dl>
                 <dt>プロジェクト名: </dt>
-                <dd>{data.title}</dd>
+                <dd>{data.projectname}</dd>
               </dl>
               <dl>
                 <dt>期間: </dt>
