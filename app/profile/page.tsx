@@ -47,10 +47,6 @@ export default function Profile() {
                     <br />
                     WordPress：経験5年
                     <br />
-                    GoogleAnalytics：経験4年
-                    <br />
-                    Clarity：経験1年
-                    <br />
                     C言語：経験2年
                   </dd>
                   <dt className={styles.profileList_dt}>ツール：</dt>
