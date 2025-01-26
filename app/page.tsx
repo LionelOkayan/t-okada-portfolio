@@ -17,9 +17,9 @@ export default async function Home() {
       <section className={styles.top}>
         <div>
           <div className={styles.bgTextWrap}>
-            <h2 className={styles.title}>成果を生むWEB制作</h2>
+            <h2 className={styles.title}>成果を生むWEB制作とマーケティング</h2>
             <p className={styles.bgtext}>
-              デザイン×データ解析×生成AIで、課題解決を実現する一気通貫のWEB制作
+              デザイン×データ解析×生成AIで、課題解決とビジネス成長を支援する一気通貫のアプローチ
             </p>
           </div>
           <Image
@@ -56,7 +56,7 @@ export default async function Home() {
             <div className={styles.toph3WrepProfileText}>
               <h3 className={styles.toph3TitleProfile}>PROFILE</h3>
               <p className={styles.topTitleSubProfile}>
-                WEB制作会社と事業会社で培った経験を活かし、デザインと解析、生成AI活用で成果を創出するWEBクリエイター。
+                WEB制作会社と事業会社で培った経験を活かし、デザイン・解析・生成AI活用を通じて、成果創出とビジネス課題解決に貢献するWEBクリエイター兼マーケター。
               </p>
             </div>
 

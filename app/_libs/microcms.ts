@@ -9,6 +9,7 @@ export type Category = {
   categoryname: string;
 } & MicroCMSListContent;
 
+//ポートフォリオ用
 export type Portfolio = {
   title: string;
   description_thumb: string;
@@ -22,6 +23,15 @@ export type Portfolio = {
   usetool: string;
   url: string;
   seika: string;
+} & MicroCMSListContent;
+
+//ブログ用
+export type Blog = {
+  title: string;
+  createdAt: string;
+  category: string[];
+  thumbnail?: MicroCMSImage;
+  text: string;
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -82,6 +92,33 @@ export const getAllCategoryList = async () => {
 export const getAllPortfolioList = async () => {
   const listData = await client.getAllContents<Portfolio>({
     endpoint: "portfolio",
+  });
+  return listData;
+};
+
+export const getBlogList = async (queries?: MicroCMSQueries) => {
+  const listData = await client.getList<Blog>({
+    endpoint: "blog",
+    queries,
+  });
+  return listData;
+};
+
+export const getBlogDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Blog>({
+    endpoint: "blog",
+    contentId,
+    queries,
+  });
+  return detailData;
+};
+
+export const getAllBlogList = async () => {
+  const listData = await client.getAllContents<Blog>({
+    endpoint: "blog",
   });
   return listData;
 };
