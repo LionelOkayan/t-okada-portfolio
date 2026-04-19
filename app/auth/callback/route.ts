@@ -6,9 +6,10 @@ import type { NextRequest } from "next/server";
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(req.url);
   const code = searchParams.get("code");
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
   if (code) {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -26,6 +27,5 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   return NextResponse.redirect(`${siteUrl}/`);
 }
