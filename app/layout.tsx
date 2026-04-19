@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Header from "./_components/Header";
+import ConditionalHeader from "./_components/ConditionalHeader";
 import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Header />
+        <ConditionalHeader />
         {children}
         <Footer />
       </body>
