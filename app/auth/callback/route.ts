@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  const { searchParams, origin } = new URL(req.url);
+  const { searchParams } = new URL(req.url);
   const code = searchParams.get("code");
 
   if (code) {
@@ -26,5 +26,6 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(`${origin}/`);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  return NextResponse.redirect(`${siteUrl}/`);
 }
