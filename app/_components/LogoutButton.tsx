@@ -1,6 +1,6 @@
 "use client";
 
-import { createBrowserClient } from "@supabase/auth-helpers-nextjs";
+import { createBrowserClient } from "@supabase/ssr";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton(): JSX.Element {

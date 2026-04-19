@@ -1,19 +1,27 @@
-import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const ALLOWED_EMAILS = ["okayan0128@hotmail.com"];
 
 export async function middleware(req: NextRequest): Promise<NextResponse> {
-  const res = NextResponse.next();
+  let res = NextResponse.next({
+    request: { headers: req.headers },
+  });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll: () => req.cookies.getAll(),
-        setAll: (cookiesToSet) => {
+        getAll() {
+          return req.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            req.cookies.set(name, value),
+          );
+          res = NextResponse.next({ request: req });
           cookiesToSet.forEach(({ name, value, options }) =>
             res.cookies.set(name, value, options),
           );
@@ -23,37 +31,30 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
   );
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  const { pathname } = req.nextUrl;
+  const isLoginPage = req.nextUrl.pathname.startsWith("/login");
+  const isCallbackPage = req.nextUrl.pathname.startsWith("/auth/callback");
 
-  if (!user) {
-    if (pathname === "/login") return res;
-    const loginUrl = req.nextUrl.clone();
-    loginUrl.pathname = "/login";
-    return NextResponse.redirect(loginUrl);
+  if (isCallbackPage) return res;
+
+  if (!session && !isLoginPage) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  const email = user.email ?? "";
-  if (!ALLOWED_EMAILS.includes(email)) {
+  if (session && !ALLOWED_EMAILS.includes(session.user.email ?? "")) {
     await supabase.auth.signOut();
-    const loginUrl = req.nextUrl.clone();
-    loginUrl.pathname = "/login";
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (pathname === "/login") {
-    const homeUrl = req.nextUrl.clone();
-    homeUrl.pathname = "/";
-    return NextResponse.redirect(homeUrl);
+  if (session && isLoginPage) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return res;
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js)|auth/callback).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|auth/callback).*)"],
 };
