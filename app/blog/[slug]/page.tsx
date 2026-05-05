@@ -4,16 +4,13 @@ import { getBlogDetail } from "@/app/_libs/microcms";
 import ArticleBlog from "@/app/_components/ArticleBlog";
 
 type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams: {
-    dk?: string;
-  };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ dk?: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getBlogDetail(params.slug);
+  const { slug } = await params;
+  const data = await getBlogDetail(slug);
   const titleName = data.title + ` | T.OKADA's PORTFOLIO`;
   return {
     title: titleName,
@@ -25,8 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const data = await getBlogDetail(params.slug, {
-    draftKey: searchParams.dk,
+  const { slug } = await params;
+  const { dk } = await searchParams;
+  const data = await getBlogDetail(slug, {
+    draftKey: dk,
   }).catch(notFound);
 
   return (

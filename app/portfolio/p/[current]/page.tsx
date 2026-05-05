@@ -7,13 +7,12 @@ import Pagination from "@/app/_components/Pagination";
 import { PORTFOLIO_LIST_LIMIT } from "@/app/_constants";
 
 type Props = {
-  params: {
-    current: string;
-  };
+  params: Promise<{ current: string }>;
 };
 
 export default async function Page({ params }: Props) {
-  const current = parseInt(params.current);
+  const { current: currentStr } = await params;
+  const current = parseInt(currentStr);
   const { contents: portfolio, totalCount } = await getPortfolioList({
     limit: PORTFOLIO_LIST_LIMIT,
     offset: PORTFOLIO_LIST_LIMIT * (current - 1),

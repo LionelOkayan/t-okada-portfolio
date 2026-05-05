@@ -46,9 +46,9 @@ export default async function Home() {
           </p>
         </div>
         <PortfolioList portfolio={data.contents} />
-        <a href="/portfolio" className={styles.linkBtn}>
+        <Link href="/portfolio" className={styles.linkBtn}>
           ポートフォリオをもっと見る
-        </a>
+        </Link>
       </section>
       <section className={styles.profileBg}>
         <div className={styles.toph3Wrep}>

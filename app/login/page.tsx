@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useState, Suspense } from "react";
 import { createBrowserClient } from "@supabase/ssr";
-import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import AuthHeader from "@/app/_components/AuthHeader";
 
@@ -12,7 +12,7 @@ const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-function LoginContent(): JSX.Element {
+function LoginContent(): React.JSX.Element {
   useSearchParams();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -83,7 +83,7 @@ function LoginContent(): JSX.Element {
   );
 }
 
-export default function LoginPage(): JSX.Element {
+export default function LoginPage(): React.JSX.Element {
   return (
     <>
       <AuthHeader />
