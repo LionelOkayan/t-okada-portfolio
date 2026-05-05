@@ -28,7 +28,6 @@
     "react": "^19",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^19",
-    "react-scroll": "^1.9.0",
     "undici": "^5.22.0"
   },
   "devDependencies": {
@@ -38,7 +37,6 @@
     "@types/react": "^19",
     "@types/react-anchor-link-smooth-scroll": "^1.0.5",
     "@types/react-dom": "^19",
-    "@types/react-scroll": "^1.8.10",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
     "eslint": "^8",
