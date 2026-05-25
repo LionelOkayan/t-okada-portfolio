@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import ConditionalHeader from "./_components/ConditionalHeader";
 import Footer from "./_components/Footer";
+import ProgressBar from "./_components/ProgressBar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://t-okada-portfolio.vercel.app/"),
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
+        <ProgressBar />
         <ConditionalHeader />
         {children}
         <Footer />
