@@ -56,5 +56,5 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|_next/|auth/callback|.*\\.png$|.*\\.jpg$|.*\\.svg$|.*\\.ico$|.*\\.webp$).*)"],
+  matcher: ["/((?!api/keep-alive|_next/static|_next/image|favicon.ico|_next/|auth/callback|.*\\.png$|.*\\.jpg$|.*\\.svg$|.*\\.ico$|.*\\.webp$).*)"],
 };
